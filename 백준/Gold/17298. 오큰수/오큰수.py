@@ -1,6 +1,7 @@
 import sys
+input = sys.stdin.readline
 n = int(input())
-a = list(map(int, sys.stdin.readline().rstrip().split()))
+a = list(map(int, input().rstrip().split()))
 p = [-1] * n;l = []
 l.append(0)
 for i in range(1, n):
