@@ -1,10 +1,8 @@
+prt = 0
 t = int(input())
 for a in range(t//2, t+1):
-    temp = a
-    for i in str(a):
-        temp += int(i)
+    temp = sum((map(int, str(a)))) + a
     if temp == t:
-        print(a)
+        prt = a
         break
-    elif a == t:
-        print(0)
+print(prt)
