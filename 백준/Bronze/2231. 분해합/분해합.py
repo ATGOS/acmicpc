@@ -8,4 +8,3 @@ for a in range(t//2, t+1):
         break
     elif a == t:
         print(0)
-    a+=1
