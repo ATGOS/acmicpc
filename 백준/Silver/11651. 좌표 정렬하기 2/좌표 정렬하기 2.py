@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 n = int(input())
 l = []
 for i in range(n): l.append(list(map(int, input().split())))
