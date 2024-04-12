@@ -1,10 +1,11 @@
-n, m = map(int, input().split())
-a=[];b=[]
-for i in range(n) :
-    a.append(list(map(int, input().split())))
-for i in range(n) :
-    b.append(list(map(int, input().split())))
-    for j in range(m) :
-        b[i][j]+=a[i][j]
-for i in b :
-    print(*i)
+num1, num2 = map(int, input().split())#num1 : 행, num2: 열
+A = []
+B = []
+for i in range(num1):
+    A.append(input().split())
+for i in range(num1):
+    B.append(input().split())
+for i in range(num1):
+    for j in range(num2):
+        A[i][j] = int(A[i][j]) + int(B[i][j])
+    print(*A[i])
