@@ -1,25 +1,14 @@
 #include <iostream>
-#include <climits>
 
 int N;
 int heap_len{ 0 };
 std::pair<int, int> heap[100'000];	// first에 진짜, second에 절댓값
-
 
 void swap(std::pair<int, int>* a, std::pair<int, int>* b) {
 	std::pair<int, int> temp = *a;
 	*a = *b;
 	*b = temp;
 }
-
-void printing() {
-	// 테스트용
-	for (int i = 0; i < heap_len; i++) {
-		std::cout << heap[i].first << " ";
-	}
-	std::cout << heap_len << "\n\n";
-}
-
 
 void push(int insert) {
 	/*
@@ -75,24 +64,20 @@ int pop() {
 			min_child = left_child;
 		}
 		else { // 자식이 둘 다 있을 때, 절댓값이 작은 것을 min_child로, 절댓값이 같으면 실제값이 작은 것을 min_child로
-			if (heap[left_child].second == heap[right_child].second) {
+			if (heap[left_child].second == heap[right_child].second)
 				min_child = (heap[left_child].first < heap[right_child].first) ? left_child : right_child;
-			}
-			else {
+			else
 				min_child = (heap[left_child].second < heap[right_child].second) ? left_child : right_child;
-			}
 		}
 
 		if (heap[parent].second < heap[min_child].second) break; // 부모가 자식보다 작으면 종료
 		if (heap[parent].second == heap[min_child].second && heap[parent].first < heap[min_child].first) break; // 값이 같은데 부모의 실제값이 더 작으면 종료
 		swap(&heap[parent], &heap[min_child]);
 		parent = min_child;
-		//printing();
 	}
 
 	return rtn;
 }
-
 
 int main() {
 	std::ios_base::sync_with_stdio(false);
@@ -110,7 +95,6 @@ int main() {
 		else {
 			push(a);
 		}
-		//printing();
 	}
 
 }
