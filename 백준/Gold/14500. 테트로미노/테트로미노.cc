@@ -9,7 +9,6 @@ int t_y[7][4] = { {0, 0, 0, 0}, {0, 0, 1, 1}, {0, 0, 1, 2}, {0, 1, 1, 1}, {0, 0,
 std::pair<bool, int> test(int y, int x, int num, int sum) {
 	int i{ 0 };
 	int nx{ 0 }, ny{ 0 };
-	//int* rotate[4][2] = { {t_x[num], t_y[num]}, {-t_x[num], -t_y[num]}, {t_y[num], -t_x[num]}, {-t_y[num], t_x[num]} };
 	int temp{ 0 };
 	for (int j = 0; j < 4; j++) { // 4번의 rotate를 위한 반복문
 		temp = 0;
@@ -36,16 +35,14 @@ std::pair<bool, int> test(int y, int x, int num, int sum) {
 				ny = y + t_x[num][i];
 				break;
 			}
-			//std::cout << nx << " " << ny << " " << arr[ny][nx] << " " << j << "\n";
 			if (0 >= nx || nx > M || 0 >= ny || ny > N) {
-				//std::cout << "나감" << "\n";
+				// 범위 밖
 				break;
 			}
 
 			temp += arr[ny][nx];
 		}
 		if (temp > sum) sum = temp;
-		//std::cout << x << " " << y << " " << sum << "\n\n";
 	}
 	return { true, sum };
 }
@@ -67,7 +64,7 @@ int main() {
 
 	for (i = 1; i <= N; i++) {
 		for (j = 1; j <= M; j++) {
-			for (int k = 0; k < 7; k++) {
+			for (int k = 0; k < 7; k++) { // 7개의 도형을 위한 반복문
 				std::pair<bool, int> temp = test(i, j, k, sum);
 				boolean = temp.first;
 				sum = temp.second;
