@@ -4,7 +4,6 @@
 
 int N, M;
 int arr[8];
-int visited[8];
 std::vector<int> v(8);
 
 int dfs(int start, int count) {
@@ -19,12 +18,9 @@ int dfs(int start, int count) {
 	// M개의 원소로 이루어진 수열 만들기
 	int temp{ 0 };
 	for (int i = start; i < N; i++) {
-		//if (visited[i] == 1) continue;
 		if (temp == v[i]) continue;
 		arr[count] = v[i];
-		visited[i] = 1;
 		temp = dfs(i, count + 1);
-		visited[i] = 0;
 	}
 	return arr[count - 1];
 }
