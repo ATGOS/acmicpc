@@ -6,16 +6,16 @@ int num_list[20];
 int answer{ 0 };
 
 void dfs(int num, int sum) {
-
-	if (num == N - 1 && sum == S) {
+	num++;
+	if (num == N && sum == S) {
 		answer++;
 		return;
 	}
-	else if (num == N - 1) {
+	else if (num == N) {
 		return;
 	}
-	dfs(num + 1, sum + num_list[num + 1]); // 더한 것
-	dfs(num + 1, sum); // 안 더한 것
+	dfs(num, sum + num_list[num]); // 더한 것
+	dfs(num, sum); // 안 더한 것
 }
 
 int main() {
@@ -26,12 +26,9 @@ int main() {
 		std::cin >> num_list[i];
 	}
 	
-	//std::sort(num_list, num_list + 20);
-
 	if (S == 0) answer--;
 
-	dfs(0, num_list[0]);
-	dfs(0, 0);
+	dfs(-1, 0);
 
 	std::cout << answer;
 	
