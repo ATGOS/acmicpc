@@ -75,8 +75,6 @@ int main() {
 	arr[shark_y][shark_x] = 0;
 
 	while (is_done()) {
-		// std::cout << shark_size << " " << shark_x << " " << shark_y << "\n";
-
 		// visited, v, q 초기화
 		v.clear();
 		std::memset(visited, 0, sizeof(visited));
@@ -90,11 +88,6 @@ int main() {
 		q.push({ 0, { shark_x, shark_y } });
 		bfs();
 
-		/*
-		for (std::pair<int, std::pair<int, int>> temp : v) {
-			std::cout << "거리: " << temp.first << " x: " << temp.second.first << " y: " << temp.second.second << "\n";
-		}
-		*/
 		if (v.empty()) break;
 		// 거리가 같다면 가장 위(y가 최소), 여러 마리라면 가장 왼쪽(x)기준으로 정렬
 		std::sort(v.begin(), v.end()
@@ -127,7 +120,6 @@ int main() {
 		}
 
 		answer += dis;
-		// std::cout << "num" << num[1] << " " << num[2] << " " << num[3] << " " << num[4] << " " << num[5] << " " << num[6] << "\n";
 	}
 	std::cout << answer;
 
