@@ -10,24 +10,23 @@ int main() {
     long long m;
     std::cin >> n >> m;
 
-    
-    std::vector<int> v(n);
+    int* arr = new int[n];
     for (int i = 0; i < n; ++i) {
-        std::cin >> v[i];
+        std::cin >> arr[i];
     }
 
-    std::sort(v.begin(), v.end());
+    std::sort(arr, arr + n);
 
     int left = 0;
-    int right = v[n - 1];
+    int right = arr[n - 1];
 
     while (left <= right) {
         int middle = (left + right) / 2;
         long long sum = 0;
 
         for (int i = 0; i < n; ++i) {
-            if (v[i] > middle) {
-                sum += v[i] - middle;
+            if (arr[i] > middle) {
+                sum += arr[i] - middle;
             }
         }
 
