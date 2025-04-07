@@ -64,6 +64,10 @@ int bfs() {
 }
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    std::cout.tie(NULL);
+
     std::cin >> M >> N >> H;
     tomato.resize(H, std::vector<std::vector<int>>(N, std::vector<int>(M)));
     for (int k = 0; k < H; ++k) {
