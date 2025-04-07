@@ -1,59 +1,55 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <algorithm>
-#define INF 1'000'000'000
 
-struct cmp {
-	bool operator() (std::pair<int, int>& a, std::pair<int, int>& b) {
-		if (a.second > b.second) return true;
-		else return false;
-	}
-};
-
-std::vector<std::pair<int, int>> v[1001];
-std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, cmp> pq;	// { 목표 지점, 목표까지의 거리 }
-int visited[1001];
+int N, M;
+const int INF = 100'000'000;
 
 int main() {
-	std::ios::sync_with_stdio(false);
-	std::cin.tie(nullptr);
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(NULL);
+	std::cout.tie(NULL);
 
-	std::fill(visited, visited + 1001, INF);
-
-	int N, M;
 	std::cin >> N >> M;
 
-	for (int i = 0; i < M; i++) {
-		int a, b, c;
-		std::cin >> a >> b >> c;
-		v[a].push_back({ b, c });	
-		// v[n].second 는 n에서 v[n].first로 가는 비용
+	std::vector<std::vector<int>> graph(N + 1, std::vector<int>(N + 1, INF));
+	std::vector<int> distance(N + 1, INF);
+	std::vector<bool> visited(N + 1, false);
+
+	for (int i = 0; i < M; ++i) {
+		int a, b, cost;
+		std::cin >> a >> b >> cost;
+		graph[a][b] = std::min(graph[a][b], cost);  // 같은 노선 여러 번 나올 수 있음
 	}
-	int start, end;
-	std::cin >> start >> end;
 
-	pq.push({ start, 0 });
-	visited[start] = 0;
+	int Start, End;
+	std::cin >> Start >> End;
 
-	while (!pq.empty()) {
-		int now = pq.top().first;
-		int dist = pq.top().second;
-		pq.pop();
+	distance[Start] = 0;
 
-		if (visited[now] < dist) {
-			continue;
-		}
-		for (int i = 0; i < v[now].size(); ++i) {
-			int next = v[now][i].first;
-			int next_dist = v[now][i].second + dist;
-			if (visited[next] > next_dist) {
-				visited[next] = next_dist;
-				pq.push({ next, next_dist });
+	for (int i = 1; i <= N; ++i) {
+		int minDist = INF;
+		int minIndex = -1;
+
+		// 방문 안 한 노드 중 가장 가까운 노드 찾기
+		for (int j = 1; j <= N; ++j) {
+			if (!visited[j] && distance[j] < minDist) {
+				minDist = distance[j];
+				minIndex = j;
 			}
 		}
-		
-	}
-	std::cout << visited[end];
 
+		if (minIndex == -1) break;	// 모두 방문했으면 break
+
+		visited[minIndex] = true;
+
+		// 인접 노드 거리 갱신
+		for (int j = 1; j <= N; ++j) {
+			if (graph[minIndex][j] != INF && distance[j] > distance[minIndex] + graph[minIndex][j]) {
+				distance[j] = distance[minIndex] + graph[minIndex][j];
+			}
+		}
+	}
+
+	std::cout << distance[End];
 }
