@@ -2,7 +2,7 @@
 #include <map>
 
 int N;
-std::map<char, std::pair< char, char >> tree;	// A : B C == A 왼쪽B 오른쪽C
+std::map<char, std::pair< char, char >> tree;	// A : { B, C } == A 왼쪽B 오른쪽C
 /*
 전위 : 루트 왼 오 preorder
 중위 : 왼 루트 오 inorder
@@ -10,11 +10,10 @@ std::map<char, std::pair< char, char >> tree;	// A : B C == A 왼쪽B 오른쪽C
 */
 
 void preorder(char startnode) {
-	std::cout << startnode;
-
 	char l = tree[startnode].first;
 	char r = tree[startnode].second;
 	
+	std::cout << startnode;
 	if(l != '.') 
 		preorder(l);
 	if(r != '.')
@@ -27,9 +26,7 @@ void inorder(char startnode) {
 
 	if (l != '.')
 		inorder(l);
-
 	std::cout << startnode;
-
 	if (r != '.')
 		inorder(r);
 }
@@ -42,9 +39,7 @@ void postorder(char startnode) {
 		postorder(l);
 	if (r != '.')
 		postorder(r);
-
 	std::cout << startnode;
-
 }
 
 int main() {
