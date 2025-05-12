@@ -25,12 +25,8 @@ int main() {
 	std::vector<std::vector<int>> dgn(N + 1, std::vector<int>(N + 1));	// 대각선
 
 	for (int i = 1; i < N; ++i) {
-		if (v[0][i] == 1) {
-			break;
-		}
-		else {
-			hrz[0][i] = 1;
-		}
+		if (v[0][i] == 1) break;
+		hrz[0][i] = 1;
 	}
 
 	for (int i = 1; i < N; ++i) {
