@@ -4,13 +4,6 @@
 #include <string>
 #include <algorithm>
 
-/*
-일관성: 한 번호가 다른 번호의 접두어인 경우 X
-
-트리 인덱스 (1부터 시작) 실제숫자 0~9 => 인덱스 1~10
-10k + (숫자 + 1) = 10k + 숫자인덱스
-*/
-
 int main() {
 	std::ios_base::sync_with_stdio(false);
 	std::cin.tie(nullptr);
@@ -30,7 +23,6 @@ int main() {
 		for(int i = 0; i < n; ++i) {
 			std::string s;
 			std::cin >> v[i];
-			
 		}
 		std::sort(v.begin(), v.end());
 		for (int i = 0; i < n; ++i) {
@@ -44,13 +36,10 @@ int main() {
 					break;
 				}
 				m[index] = num;
-				// std::cout << "index: " << index << "num: " << num << "\n";
 			}
 			if (coh == false) break;
 			for (int i = 1; i <= 10; ++i) m[10 * index + i] = 11;
 		}
-
 		std::cout << (coh ? "YES" : "NO") << "\n";
 	}
-
 }
